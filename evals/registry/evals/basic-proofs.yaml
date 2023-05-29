@@ -1,0 +1,102 @@
+basic-proofs-valid:
+  id: basic-proofs-valid.dev.v0
+  description: Test the model's ability to write formal proofs of simple facts.
+  metrics: [accuracy]
+basic-proofs-valid.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "validity: Is the proof mathematically valid?"
+
+basic-proofs-valid-meta:
+  id: basic-proofs-valid-meta.dev.v0
+  metrics: [accuracy]
+basic-proofs-valid-meta.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/labeled-samples-valid.jsonl
+    eval_type: cot_classify
+    metaeval: true
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "validity: Is the proof mathematically valid?"
+
+basic-proofs-relevant:
+  id: basic-proofs-relevant.dev.v0
+  description: Test the model's ability to write formal proofs of simple facts.
+  metrics: [accuracy]
+basic-proofs-relevant.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "relevance: Is the proof a proof of or counter-example for the *exact* requested theorem?"
+
+basic-proofs-relevant-meta:
+  id: basic-proofs-relevant-meta.dev.v0
+  metrics: [accuracy]
+basic-proofs-relevant-meta.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/labeled-samples-relevant.jsonl
+    eval_type: cot_classify
+    metaeval: true
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "relevance: Is the proof a proof of or counter-example for the *exact* requested theorem?"
+
+basic-proofs-complete:
+  id: basic-proofs-complete.dev.v0
+  description: Test the model's ability to write formal proofs of simple facts.
+  metrics: [accuracy]
+basic-proofs-complete.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "completeness: Does the proof contain all steps, such that a formal machine-checkable translation of this proof would not need to insert any missing steps?"
+
+basic-proofs-complete-meta:
+  id: basic-proofs-complete-meta.dev.v0
+  metrics: [accuracy]
+basic-proofs-complete-meta.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/labeled-samples-complete.jsonl
+    eval_type: cot_classify
+    metaeval: true
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "completeness: Does the proof contain all steps, such that a formal machine-checkable translation of this proof would not need to insert any missing steps?"
+
+basic-proofs-transparent:
+  id: basic-proofs-transparent.dev.v0
+  metrics: [accuracy]
+basic-proofs-transparent.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "transparency: If the response claims to not know whether a statement is true or false, is this claim reasonable? (It would be unreasonable, for example, if the statement is simple and its provability known.) If the response provides a proof or counterexample, then respond 'Yes'."
+
+basic-proofs-transparent-meta:
+  id: basic-proofs-transparent-meta.dev.v0
+  metrics: [accuracy]
+basic-proofs-transparent-meta.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: basic-proofs/labeled-samples-transparent.jsonl
+    eval_type: cot_classify
+    metaeval: true
+    modelgraded_spec: closedqa
+    modelgraded_spec_args:
+      criteria: "transparency: If the response claims to not know whether a statement is true or false, is this claim reasonable? (It would be unreasonable, for example, if the statement is simple and its provability known.) If the response provides a proof or counterexample, then respond 'Yes'."

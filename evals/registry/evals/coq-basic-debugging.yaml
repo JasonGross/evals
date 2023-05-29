@@ -1,0 +1,23 @@
+coq-basic-debugging:
+  id: coq-basic-debugging.dev.v0
+  description: Test the model's ability to correctly diagnose Coq error messages and determine when there is not enough information and more debugging is required.
+  metrics: [accuracy]
+coq-basic-debugging.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: coq-basic-debugging/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact+instructions
+
+# a meta-evaluation of the above modelgraded eval
+# this example uses a labeled dataset with "completion" and "choice"
+coq-basic-debugging-meta:
+  id: coq-basic-debugging-meta.dev.v0
+  metrics: [accuracy]
+coq-basic-debugging-meta.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: coq-basic-debugging/labeled-samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact+instructions
+    metaeval: true
